@@ -1,22 +1,7 @@
-<script>
-export default {
-  props: {
-    messageText: {
-      type: String,
-      required: true,
-    },
-  },
-};
-</script>
+<script setup></script>
 
 <template>
-  <h1 class="message">
-    {{ messageText }}
-  </h1>
+  <h1>Sportova</h1>
 </template>
 
-<style lang="scss" scoped>
-.message {
-  background-color: lime;
-}
-</style>
+<style lang="scss" scoped></style>
