@@ -4,12 +4,12 @@ import HelloWorld from '@components/HelloWorld.vue';
 const routes = [
   {
     name: 'home',
-    path: '/sportova/home',
+    path: '/sportova',
     component: HelloWorld,
   },
   {
     path: '/:pathMatch(.*)',
-    redirect: '/sportova/home',
+    redirect: '/sportova',
   },
 ];
 
