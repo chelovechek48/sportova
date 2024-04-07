@@ -1,7 +1,11 @@
-<script setup></script>
+<script setup>
+
+</script>
 
 <template>
-  <h1>Sportova</h1>
+  <div>
+    123
+  </div>
 </template>
 
 <style lang="scss" scoped></style>
