@@ -18,7 +18,7 @@ defineProps({
 <template>
   <router-link>
     <SvgTemplate
-      :id="iconId"
+      :icon-id="iconId"
       :view-box="viewBox"
     />
   </router-link>

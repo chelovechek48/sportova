@@ -1,6 +1,7 @@
 <script setup>
 import { ref, defineEmits } from 'vue';
 import LinkSvg from '@components/LinkSvg.vue';
+import SvgTemplate from '@components/SvgTemplate.vue';
 
 const headerIsOpen = ref(false);
 
@@ -42,29 +43,40 @@ const toggleMenu = () => {
   >
     <div class="navigation">
       <div class="navigation__container page-container">
-        <router-link
-          class="header__logo"
-          to="home"
-        />
-        <input
-          class="header__search"
-          type="search"
-          name=""
-          id=""
-          placeholder="Поиск по сайту"
-          @focus="addFocus"
-        >
+        <div class="header__logo">
+          <LinkSvg
+            class="header__logo-icon"
+            to="home"
+            icon-id="logo"
+            view-box="0 0 571 136"
+          />
+        </div>
+        <div class="header__search">
+          <SvgTemplate
+            class="header__search-icon"
+            icon-id="search"
+            view-box="0 0 19 19"
+          />
+          <input
+            class="header__search-input"
+            type="search"
+            name=""
+            id=""
+            placeholder="Поиск по сайту"
+            @focus="addFocus"
+          >
+        </div>
         <LinkSvg
           to="home"
           class="header__button"
           icon-id="favorites"
-          view-box="0 0 1 1"
+          view-box="0 0 24 20"
         />
         <LinkSvg
           to="home"
           class="header__button"
           icon-id="cart"
-          view-box="0 0 1 1"
+          view-box="0 0 22 19"
         />
         <button
           class="header__button header__burger header__burger_mobile"
@@ -136,11 +148,13 @@ const toggleMenu = () => {
 @use '@vars/container';
 @use '@vars/colors';
 
-@mixin logo($height, $ratio, $ratio-fullsize: $ratio) {
+@mixin logo-ratio($height, $ratio) {
   height: $height;
-  aspect-ratio: $ratio;
-  background-size: calc($height * $ratio-fullsize) $height;
+  min-width: calc($height * $ratio);
 }
+
+$icon-height: 1.5rem;
+$button-padding: clamp(0.5rem , 3vw, 0.75rem);
 
 .navigation,
 .header__logo {
@@ -153,7 +167,7 @@ const toggleMenu = () => {
   box-shadow: var(--scroll-width) 0 0 0 $background-color;
 
   @media (max-width: $tablet) {
-    padding-block: 0.75rem;
+    padding-block: $button-padding;
   }
 
   &__container {
@@ -164,9 +178,6 @@ const toggleMenu = () => {
 }
 
 .header {
-  $icon-height: 1.5rem;
-  $button-padding: 0.75rem;
-
   position: sticky;
   top: 0;
 
@@ -181,62 +192,82 @@ const toggleMenu = () => {
   &__button {
     flex-shrink: 0;
     color: colors.$gray;
-    padding: $button-padding;
+    padding-block: $button-padding;
+    width: calc($icon-height + $button-padding * 2);
   }
   &__search {
-    @media (min-width: calc($mobile + 1px)) {
-      width: 100%;
-      flex-grow: 1;
+    z-index: 10;
+    display: flex;
+    padding: $button-padding;
+
+    &-icon {
+      width: auto;
+      flex: 0 0 auto;
     }
-    @media (max-width: $mobile) {
-      width: 0;
-      flex-grow: 0;
-      padding-right: 0;
-      transition: 0s;
-      &:focus {
-        position: absolute;
-        width: calc(100vw - (container.$padding + $icon-height) * 2 - $button-padding);
-        padding-right: $button-padding;
+    &-input {
+      font-size: 1rem;
+      background-color: transparent;
+      margin:
+        calc(0px - $button-padding)
+        calc(0px - $button-padding)
+        calc(0px - $button-padding)
+        calc(0px - ($button-padding + $icon-height));
+      padding-left: calc($icon-height + $button-padding * 2);
+      border-radius: inherit;
+
+      &::placeholder {
+        color: colors.$gray;
+        opacity: 1;
       }
     }
 
-    font-size: 1rem;
-    padding:
-      $button-padding
-      $button-padding
-      $button-padding
-      calc($button-padding * 2 + $icon-height);
+    transition: margin 250ms ease;
+    @media (min-width: calc($tablet + 1px)) {
+      margin-left: 2rem;
+    }
 
-    background-image: url('@icons/sprite.svg#search-view');
-    background-repeat: no-repeat;
-    background-size: $icon-height;
-    background-position: $button-padding center;
+    @media (min-width: calc($mobile + 1px)) {
+      flex-grow: 1;
+      min-width: 0;
+      &-input {
+        padding-right: $button-padding;
+        flex: 1 1 0;
+      }
+    }
+    @media (max-width: $mobile) {
+      margin-left: auto;
+      flex-grow: 0;
+      &-input {
+        padding-right: 0;
+        width: 0;
+      }
 
-    &::placeholder {
-      color: colors.$gray;
-      opacity: 1;
+      &:focus-within {
+        position: absolute;
+      }
+      &:focus-within &-input {
+        width: calc(100vw - container.$padding * 2);
+        padding-right: $button-padding;
+      }
     }
   }
 
   &__burger {
-    aspect-ratio: 1;
     display: flex;
     flex-direction: column;
+    align-items: center;
     justify-content: center;
     gap: var(--burger-gap);
 
     &-item {
       flex: 0 0 1px;
-      width: 100%;
+      width: $icon-height;
       transition: all 250ms ease;
     }
     @media (min-width: calc(45rem + 1px)) {
-      --burger-gap: 5px;
+      --burger-gap: 0.35rem;
       &_mobile {
         display: none;
-      }
-      &_desktop {
-        height: 1rem;
       }
       &-item {
         background-color: #fff;
@@ -254,16 +285,21 @@ const toggleMenu = () => {
   }
 
   &__logo {
-    background-image: url('@icons/sprite.svg#logo-view');
-    background-repeat: no-repeat;
-
-    @media (min-width: calc($tablet + 1px)) {
-      margin-right: 2rem;
+    overflow: hidden;
+    position: relative;
+    &-icon {
+      position: absolute;
+      height: 100%;
+      aspect-ratio: 571 / 136;
+      top: 0;
+      left: 0;
     }
 
     @media (max-width: 45rem) {
-      margin-right: auto;
-      @include logo($height: 3.25rem, $ratio: calc(212 / 231), $ratio-fullsize: calc(571 / 136));
+      @include logo-ratio(
+        $height: calc($button-padding * 2 + $icon-height),
+        $ratio: calc(212 / 231)
+      );
     }
   }
 }
@@ -400,11 +436,8 @@ const toggleMenu = () => {
       }
     }
     .header__logo {
-      @media (min-width: calc($tablet + 1px)) {
-        @include logo($height: 3.75rem, $ratio: calc(212 / 231), $ratio-fullsize: calc(571 / 136));
-      }
-      @media (max-width: $tablet) and (min-width: calc(45rem + 1px)) {
-        @include logo($height: 3.75rem, $ratio: calc(212 / 231), $ratio-fullsize: calc(571 / 136));
+      @media (min-width: calc(45rem + 1px)) {
+        @include logo-ratio($height: 3.75rem, $ratio: calc(212 / 231));
       }
     }
   }
@@ -416,10 +449,10 @@ const toggleMenu = () => {
     }
     .header__logo {
       @media (min-width: calc($tablet + 1px)) {
-        @include logo($height: 4.5rem, $ratio: calc(571 / 136));
+        @include logo-ratio($height: 4.5rem, $ratio: calc(571 / 136));
       }
       @media (max-width: $tablet) and (min-width: calc(45rem + 1px)) {
-        @include logo($height: 3.75rem, $ratio: calc(571 / 136));
+        @include logo-ratio($height: 3.75rem, $ratio: calc(571 / 136));
       }
     }
   }

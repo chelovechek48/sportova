@@ -3,7 +3,7 @@ import { defineProps } from 'vue';
 import sprite from '@icons/sprite.svg';
 
 defineProps({
-  id: {
+  iconId: {
     type: String,
     required: true,
   },
@@ -17,7 +17,7 @@ defineProps({
 
 <template>
   <svg :viewBox="viewBox || '0 0 1 1'">
-    <use :xlink:href="`${sprite}#${id}`" />
+    <use :xlink:href="`${sprite}#${iconId}`" />
   </svg>
 </template>
 
