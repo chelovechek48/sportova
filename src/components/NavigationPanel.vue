@@ -43,14 +43,16 @@ const toggleMenu = () => {
   >
     <div class="navigation">
       <div class="navigation__container page-container">
-        <div class="header__logo">
-          <LinkSvg
+        <router-link
+          class="header__logo"
+          to="home"
+        >
+          <SvgTemplate
             class="header__logo-icon"
-            to="home"
             icon-id="logo"
             view-box="0 0 571 136"
           />
-        </div>
+        </router-link>
         <div class="header__search">
           <SvgTemplate
             class="header__search-icon"
@@ -60,10 +62,9 @@ const toggleMenu = () => {
           <input
             class="header__search-input"
             type="search"
-            name=""
-            id=""
+            name="page-search"
+            id="search"
             placeholder="Поиск по сайту"
-            @focus="addFocus"
           >
         </div>
         <LinkSvg
@@ -79,12 +80,10 @@ const toggleMenu = () => {
           view-box="0 0 22 19"
         />
         <button
-          class="header__button header__burger header__burger_mobile"
+          class="header__button header__burger_mobile-wrapper"
           @click="toggleMenu"
         >
-          <span class="header__burger-item" />
-          <span class="header__burger-item" />
-          <span class="header__burger-item" />
+          <div class="header__burger header__burger_mobile" />
         </button>
       </div>
     </div>
@@ -94,11 +93,7 @@ const toggleMenu = () => {
           class="menu__dropdown-button"
           @click="toggleMenu"
         >
-          <div class="header__burger header__burger_desktop">
-            <span class="header__burger-item" />
-            <span class="header__burger-item" />
-            <span class="header__burger-item" />
-          </div>
+          <div class="header__burger header__burger_desktop" />
           Каталог товаров
         </button>
         <nav>
@@ -194,6 +189,10 @@ $button-padding: clamp(0.5rem , 3vw, 0.75rem);
     color: colors.$gray;
     padding-block: $button-padding;
     width: calc($icon-height + $button-padding * 2);
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
   }
   &__search {
     z-index: 10;
@@ -253,40 +252,56 @@ $button-padding: clamp(0.5rem , 3vw, 0.75rem);
   }
 
   &__burger {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    gap: var(--burger-gap);
+    position: relative;
+    width: $icon-height;
+    height: 1px;
 
-    &-item {
-      flex: 0 0 1px;
+    &:before,
+    &:after {
+      content: '';
+      position: absolute;
+      left: 0;
       width: $icon-height;
+      height: 1px;
       transition: all 250ms ease;
     }
-    @media (min-width: calc(45rem + 1px)) {
-      --burger-gap: 0.35rem;
+    transition: all 250ms ease;
+
+    @media (max-width: 45rem) {
       &_mobile {
-        display: none;
-      }
-      &-item {
-        background-color: #fff;
-      }
-    }
-    @media (max-width: calc(45rem + 1px)) {
-      --burger-gap: 0.5rem;
-      &-item {
-        background-color: colors.$gray;
+        --burger-gap: 0.5rem;
+        &, &::before, &::after {
+          background-color: colors.$gray;
+        }
       }
       &_desktop {
         display: none;
       }
+    }
+    @media (min-width: calc(45rem + 1px)) {
+      &_mobile-wrapper {
+        display: none;
+      }
+      &_desktop {
+        --burger-gap: 0.35rem;
+        &, &::before, &::after {
+          background-color: colors.$white;
+        }
+      }
+    }
+
+    &:before {
+      top: var(--burger-gap);
+    }
+    &:after {
+      bottom: var(--burger-gap);
     }
   }
 
   &__logo {
     overflow: hidden;
     position: relative;
+
     &-icon {
       position: absolute;
       height: 100%;
@@ -404,17 +419,12 @@ $button-padding: clamp(0.5rem , 3vw, 0.75rem);
   }
   &_opened {
     .header__burger {
-      &-item {
-        &:nth-child(1) {
-          transform: translateY(calc(var(--burger-gap) + 100%)) rotate(45deg);
-        }
-        &:nth-child(2) {
-          width: 0;
-          opacity: 0;
-        }
-        &:nth-child(3) {
-          transform: translateY(calc(0px - (var(--burger-gap) + 100%))) rotate(-45deg);
-        }
+      background-color: transparent;
+      &:before {
+        transform: translateY(calc(0px - (var(--burger-gap) - 1px + 100%))) rotate(-45deg);
+      }
+      &:after {
+        transform: translateY(calc(var(--burger-gap) - 1px + 100%)) rotate(45deg);
       }
     }
     .menu {
