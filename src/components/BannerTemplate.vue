@@ -82,26 +82,30 @@ defineProps({
   }
 
   &__description {
+    font-size: 1rem;
+    line-height: 1.5em;
+  }
+  &_large &__description {
     @media (min-width: $mobile) {
       width: 70%;
     }
-    font-size: 1rem;
-    line-height: 1.5em;
   }
 
   &__button {
     font-size: 1rem;
     font-weight: 500;
     margin-top: auto;
-  }
-  &_large &__button {
+
     color: colors.$white;
     background-color: colors.$orange;
-    padding: 1rem 2rem;
+    background-image: linear-gradient(90deg, colors.$orange, darken(colors.$orange, 10));
     border-radius: 0.75rem;
   }
+  &_large &__button {
+    padding: 1rem 2rem;
+  }
   &_small &__button {
-    color: colors.$white;
+    padding: 0.5rem 1rem;
   }
 }
 </style>

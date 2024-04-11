@@ -34,7 +34,7 @@ import bannerItems from '@/assets/data/bannerData.json';
     grid-template-columns: 1fr;
   }
 
-  :nth-child(1) {
+  >:nth-child(1) {
     @media (min-width: calc($tablet + 1px)) {
       grid-row-start: 1;
       grid-row-end: 3;
