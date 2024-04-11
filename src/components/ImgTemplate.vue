@@ -14,7 +14,7 @@ const props = defineProps({
 
 const imagesCollectionObject = ref(props.src);
 const imagesCollectionArray = Object.entries(imagesCollectionObject.value);
-const sourcesCollectionArray = imagesCollectionArray.filter((source) => !['default', 'alt'].indexOf(source[0]));
+const sourcesCollectionArray = imagesCollectionArray.filter((source) => !((['default', 'alt'].indexOf(source[0])) + 1));
 
 (async function getImagesCollectionObject() {
   const imagesPath = await Promise.all(
