@@ -175,6 +175,7 @@ $button-padding: clamp(0.5rem , 3vw, 0.75rem);
 .header {
   position: sticky;
   top: 0;
+  z-index: 100;
 
   &__button,
   &__search {
