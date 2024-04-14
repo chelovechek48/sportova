@@ -2,6 +2,7 @@
 import { ref, defineEmits } from 'vue';
 import LinkSvg from '@components/LinkSvg.vue';
 import SvgTemplate from '@components/SvgTemplate.vue';
+import categoryData from '@/assets/data/categoryData.json';
 
 const headerIsOpen = ref(false);
 
@@ -16,15 +17,6 @@ const handleScroll = () => {
   }
 };
 window.addEventListener('scroll', handleScroll);
-
-const menuList = [
-  { link: '', text: 'Шведские стенки' },
-  { link: '', text: 'Уличные комплексы' },
-  { link: '', text: 'Турники' },
-  { link: '', text: 'Тяжелая атлетика' },
-  { link: '', text: 'Турники' },
-  { link: '', text: 'Турники' },
-];
 
 const toggleMenu = () => {
   headerIsOpen.value = !headerIsOpen.value;
@@ -99,7 +91,7 @@ const toggleMenu = () => {
         <nav>
           <ul class="menu__list">
             <li
-              v-for="menuItem in menuList.slice(0, 4)"
+              v-for="menuItem in categoryData.slice(0, 4)"
               :key="menuItem.link"
             >
               <router-link
@@ -122,7 +114,7 @@ const toggleMenu = () => {
       <nav class="menu__dropdown-list">
         <ul>
           <li
-            v-for="menuItem in menuList"
+            v-for="menuItem in categoryData"
             :key="menuItem.link"
           >
             <router-link

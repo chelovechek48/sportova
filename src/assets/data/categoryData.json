@@ -1,0 +1,37 @@
+[
+  {
+    "link": "",
+    "text": "Шведские стенки",
+    "icon": "swedish-walls"
+  },
+  {
+    "link": "",
+    "text": "Турники",
+    "icon": "horizontal-bars"
+  },
+  {
+    "link": "",
+    "text": "Уличные комплексы",
+    "icon": "street-complexes"
+  },
+  {
+    "link": "",
+    "text": "Тяжелая атлетика",
+    "icon": "weightlifting"
+  },
+  {
+    "link": "",
+    "text": "Стойки под штангу",
+    "icon": "barbell"
+  },
+  {
+    "link": "",
+    "text": "Единоборства",
+    "icon": "fighting"
+  },
+  {
+    "link": "",
+    "text": "Фитнес",
+    "icon": "fitness"
+  }
+]

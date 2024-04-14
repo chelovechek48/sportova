@@ -55,5 +55,9 @@ body {
   flex: 1 1 100%;
   padding-block: container.$padding;
   min-height: 3000px;
+
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
 }
 </style>

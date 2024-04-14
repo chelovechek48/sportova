@@ -1,6 +1,10 @@
 <script setup>
 import BannerTemplate from '@components/BannerTemplate.vue';
+import SliderTemplate from '@components/SliderTemplate.vue';
+import SectionTemplate from '@components/SectionTemplate.vue';
+
 import bannerItems from '@/assets/data/bannerData.json';
+import categoryData from '@/assets/data/categoryData.json';
 </script>
 
 <template>
@@ -13,6 +17,23 @@ import bannerItems from '@/assets/data/bannerData.json';
         :item="item"
       />
     </section>
+    <SliderTemplate
+      category="Шведские стенки"
+    />
+    <SliderTemplate
+      category="Уличные спортивные комплексы"
+    />
+    <SectionTemplate
+      title="Каталог товаров"
+      :items="[
+        ...categoryData,
+        {
+          link: '',
+          text: 'Открыть каталог',
+          icon: 'catalog',
+        }
+      ]"
+    />
   </div>
 </template>
 

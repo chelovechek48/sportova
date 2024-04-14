@@ -1,6 +1,6 @@
 <script setup>
 import { defineProps } from 'vue';
-import sprite from '@icons/sprite.svg';
+import spritePath from '@icons/sprite.svg';
 
 defineProps({
   iconId: {
@@ -11,6 +11,11 @@ defineProps({
     type: String,
     required: false,
     default: null,
+  },
+  sprite: {
+    type: String,
+    required: false,
+    default: spritePath,
   },
 });
 </script>
