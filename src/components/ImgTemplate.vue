@@ -13,8 +13,14 @@ const props = defineProps({
 });
 
 const imagesCollectionObject = ref(props.src);
-const imagesCollectionArray = Object.entries(imagesCollectionObject.value);
-const sourcesCollectionArray = imagesCollectionArray.filter((source) => !((['default', 'alt'].indexOf(source[0])) + 1));
+const imagesCollectionArray = Object.entries(imagesCollectionObject.value)
+  .filter((source) => !(
+    (['alt'].indexOf(source[0])) + 1
+  ));
+const sourcesCollectionArray = imagesCollectionArray
+  .filter((source) => !(
+    (['default'].indexOf(source[0])) + 1
+  ));
 
 (async function getImagesCollectionObject() {
   const imagesPath = await Promise.all(
@@ -38,15 +44,9 @@ const sourcesCollectionArray = imagesCollectionArray.filter((source) => !((['def
         const isEqual = (path.includes(filename.title) && path.includes(filename.extension));
         return isEqual;
       });
-
-      const isObject = (typeof option === 'object' && option !== null);
-      if (isObject) {
-        imagesCollectionObject.value[option.type][option.size] = imageUrl;
-      } else {
-        imagesCollectionObject.value.default = imageUrl;
-      }
+      imagesCollectionObject.value[option.type][option.size] = imageUrl;
+      imagesCollectionObject.value.loaded = true;
     }
-    imagesCollectionObject.value.loaded = true;
   };
   imagesCollectionArray.forEach((imageArray) => {
     const imagesArray = Object.entries(imageArray[1]);
@@ -79,12 +79,15 @@ const getSrcSet = (set) => {
       v-for="(slide, index) in sourcesCollectionArray"
       :key="index"
       :type="slide[0]"
-      :srcset="getSrcSet(imagesCollectionObject[slide[0]])"
+      :srcset="imagesCollectionObject.loaded
+        ? getSrcSet(imagesCollectionObject[slide[0]])
+        : null"
     >
     <img
-      v-if="imagesCollectionObject.loaded"
       class="image"
-      :src="imagesCollectionObject['default']['1x']"
+      :src="imagesCollectionObject.loaded
+        ? imagesCollectionObject['default']['1x']
+        : null"
       :alt="imagesCollectionObject.alt"
       loading="lazy"
     >
