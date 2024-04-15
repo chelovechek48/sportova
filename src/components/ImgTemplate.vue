@@ -1,5 +1,5 @@
 <script setup>
-import { defineProps, ref, onUpdated } from 'vue';
+import { defineProps, ref } from 'vue';
 import { useStore } from 'vuex';
 
 const store = useStore();
@@ -9,10 +9,6 @@ const props = defineProps({
     type: Object,
     required: true,
   },
-});
-
-onUpdated(() => {
-  console.log('update');
 });
 
 const imagesCollectionObject = ref(props.src);
@@ -70,20 +66,16 @@ const getSrcSet = (set) => {
 </script>
 
 <template>
-  <picture>
+  <picture v-if="imagesCollectionObject.loaded">
     <source
       v-for="(slide, index) in sourcesCollectionArray"
       :key="index"
       :type="slide[0]"
-      :srcset="imagesCollectionObject.loaded
-        ? getSrcSet(imagesCollectionObject[slide[0]])
-        : null"
+      :srcset="getSrcSet(imagesCollectionObject[slide[0]])"
     >
     <img
       class="image"
-      :src="imagesCollectionObject.loaded
-        ? imagesCollectionObject['default']['1x']
-        : null"
+      :src="imagesCollectionObject['default']['1x']"
       :alt="imagesCollectionObject.alt"
       loading="lazy"
     >
