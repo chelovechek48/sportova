@@ -149,9 +149,9 @@ $button-padding: clamp(0.5rem , 3vw, 0.75rem);
 }
 
 .navigation {
-  $background-color: colors.$white;
-  background-color: $background-color;
-  box-shadow: var(--scroll-width) 0 0 0 $background-color;
+  $gray-background-color: colors.$white;
+  background-color: $gray-background-color;
+  box-shadow: var(--scroll-width) 0 0 0 $gray-background-color;
 
   @media (max-width: $tablet) {
     padding-block: $button-padding;
@@ -337,7 +337,7 @@ $button-padding: clamp(0.5rem , 3vw, 0.75rem);
     white-space: nowrap;
     transition: all 100ms ease;
     &:hover {
-      background-color: colors.$blue-active;
+      background-color: colors.$blue-dark;
     }
   }
 
@@ -369,7 +369,7 @@ $button-padding: clamp(0.5rem , 3vw, 0.75rem);
       @media (min-width: calc(45rem + 1px)) {
         flex-shrink: 0;
         font-size: inherit;
-        background-color: colors.$blue-active;
+        background-color: colors.$blue-dark;
         padding: 1rem;
 
         display: flex;

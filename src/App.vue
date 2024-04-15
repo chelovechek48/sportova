@@ -31,7 +31,7 @@ const lockScroll = () => {
   --scroll-width: 0;
 }
 body {
-  background-color: colors.$background;
+  background-color: colors.$gray-background;
   &.scroll-locked {
     overflow: hidden;
     padding-right: var(--scroll-width);

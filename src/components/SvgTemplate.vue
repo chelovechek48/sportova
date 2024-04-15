@@ -27,7 +27,17 @@ defineProps({
 </template>
 
 <style lang="scss" scoped>
+@use '@vars/colors' as *;
+
 svg {
   height: 100%;
+}
+
+:root svg {
+  --color-blue: #{$blue};
+  --color-blue-light: #{$blue-light};
+  --color-red: #{$red};
+  --color-gray-lightest: #{$gray-lightest};
+  --color-gray-light: #{$gray-light};
 }
 </style>
