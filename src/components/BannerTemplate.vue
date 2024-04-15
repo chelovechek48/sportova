@@ -2,14 +2,13 @@
 import { defineProps } from 'vue';
 import ImgTemplate from '@components/ImgTemplate.vue';
 
-const imagesCollection = import.meta.glob('@images/*.*');
-
 defineProps({
   item: {
     type: Object,
     required: true,
   },
 });
+
 </script>
 
 <template>
@@ -19,7 +18,6 @@ defineProps({
   >
     <ImgTemplate
       class="banner__image"
-      :images-path="imagesCollection"
       :src="item.image"
     />
     <h2 class="banner__title">

@@ -1,15 +1,18 @@
 <script setup>
-import { defineProps, ref } from 'vue';
+import { defineProps, ref, onUpdated } from 'vue';
+import { useStore } from 'vuex';
+
+const store = useStore();
 
 const props = defineProps({
-  imagesPath: {
-    type: Object,
-    required: true,
-  },
   src: {
     type: Object,
     required: true,
   },
+});
+
+onUpdated(() => {
+  console.log('update');
 });
 
 const imagesCollectionObject = ref(props.src);
@@ -23,18 +26,11 @@ const sourcesCollectionArray = imagesCollectionArray
   ));
 
 (async function getImagesCollectionObject() {
-  const imagesPath = await Promise.all(
-    Object.values(props.imagesPath).map(async (image) => {
-      const module = await image();
-      return module.default;
-    }),
-  );
-
+  const imagesPath = await store.state.getImagesPath();
   const setImagesUrl = (image, option) => {
-    const imagePath = image.replace('@images', '/Flowers/src/assets/images');
-    if (imagePath.includes('/Flowers/src/assets/images')) {
+    if (image.includes('@images')) {
       const filenameRegex = /^(.+?)(\.[^.]+)?$/;
-      const filenameSplit = imagePath.match(filenameRegex);
+      const filenameSplit = image.match(filenameRegex);
       const filename = {
         title: filenameSplit[1].split('/').pop(),
         extension: filenameSplit[2],
