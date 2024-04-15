@@ -1,5 +1,4 @@
 <script setup>
-import { defineProps } from 'vue';
 import { Swiper, SwiperSlide } from 'swiper/vue';
 import { Autoplay, Keyboard } from 'swiper/modules';
 

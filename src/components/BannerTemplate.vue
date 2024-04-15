@@ -1,5 +1,4 @@
 <script setup>
-import { defineProps } from 'vue';
 import ImgTemplate from '@components/ImgTemplate.vue';
 
 defineProps({

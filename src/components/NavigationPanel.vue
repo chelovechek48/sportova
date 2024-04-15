@@ -1,5 +1,5 @@
 <script setup>
-import { ref, defineEmits } from 'vue';
+import { ref } from 'vue';
 import LinkSvg from '@components/LinkSvg.vue';
 import SvgTemplate from '@components/SvgTemplate.vue';
 import categoryData from '@/assets/data/categoryData.json';

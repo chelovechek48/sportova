@@ -1,5 +1,4 @@
 <script setup>
-import { defineProps } from 'vue';
 import spritePath from '@icons/sprite-category.svg';
 import SvgTemplate from '@components/SvgTemplate.vue';
 

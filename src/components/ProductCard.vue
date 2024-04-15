@@ -1,5 +1,5 @@
 <script setup>
-import { ref, defineProps } from 'vue';
+import { ref } from 'vue';
 import ImgTemplate from '@components/ImgTemplate.vue';
 import SvgTemplate from '@components/SvgTemplate.vue';
 
