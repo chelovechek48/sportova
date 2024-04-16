@@ -11,14 +11,15 @@ const props = defineProps({
   },
 });
 
+const isLoaded = ref(false);
 const imagesCollectionObject = ref(props.src);
 const imagesCollectionArray = Object.entries(imagesCollectionObject.value)
   .filter((source) => !(
-    (['alt'].indexOf(source[0])) + 1
+    ['alt'].includes(source[0])
   ));
 const sourcesCollectionArray = imagesCollectionArray
   .filter((source) => !(
-    (['default'].indexOf(source[0])) + 1
+    ['default'].includes(source[0])
   ));
 
 (async function getImagesCollectionObject() {
@@ -37,7 +38,7 @@ const sourcesCollectionArray = imagesCollectionArray
         return isEqual;
       });
       imagesCollectionObject.value[option.type][option.size] = imageUrl;
-      imagesCollectionObject.value.loaded = true;
+      isLoaded.value = true;
     }
   };
   imagesCollectionArray.forEach((imageArray) => {
@@ -55,27 +56,25 @@ const sourcesCollectionArray = imagesCollectionArray
   });
 }());
 
-const getSrcSet = (set) => {
-  const string = [];
-  Object.entries(set).forEach((image) => {
-    string.push(`${image[1]} ${image[0]}`);
-  });
-  return string;
-};
+const getSrcSet = (set) => Object.entries(set).map((image) => `${image[1]} ${image[0]}`);
 
 </script>
 
 <template>
-  <picture v-if="imagesCollectionObject.loaded">
+  <picture>
     <source
       v-for="(slide, index) in sourcesCollectionArray"
       :key="index"
       :type="slide[0]"
-      :srcset="getSrcSet(imagesCollectionObject[slide[0]])"
+      :srcset="isLoaded
+        ? getSrcSet(imagesCollectionObject[slide[0]])
+        : null"
     >
     <img
       class="image"
-      :src="imagesCollectionObject['default']['1x']"
+      :src="isLoaded
+        ? imagesCollectionObject['default']['1x']
+        : null"
       :alt="imagesCollectionObject.alt"
       loading="lazy"
     >
