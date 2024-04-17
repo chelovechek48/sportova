@@ -61,7 +61,7 @@ const getSrcSet = (set) => Object.entries(set).map((image) => `${image[1]} ${ima
 </script>
 
 <template>
-  <picture v-if="isLoaded">
+  <picture v-show="isLoaded">
     <source
       v-for="(slide, index) in sourcesCollectionArray"
       :key="index"
