@@ -1,8 +1,5 @@
 <script setup>
 import { ref } from 'vue';
-import { useStore } from 'vuex';
-
-const store = useStore();
 
 const props = defineProps({
   src: {
@@ -12,90 +9,51 @@ const props = defineProps({
 });
 
 const imagesCollectionObject = ref(null);
-
-(function get() {
+(function getImagesCollection() {
   const obj = props.src;
   delete (obj.alt);
   const entries = Object.entries(obj);
   entries.forEach((el) => {
     const type = el[0];
-    const option = el[1];
-    const size = Object.keys(option)[0];
-    const value = ref(false);
-    (async function gett() {
-      const a = await Object.values(option)[0];
-      value.value = a.default;
-    }());
-    obj[type][size] = value;
+    const optionArr = Object.entries(el[1]);
+    optionArr.forEach((option) => {
+      const path = option[1];
+      const size = option[0];
+      if (typeof path === 'object') {
+        const value = ref(null);
+        (async function gett() {
+          const a = await path;
+          value.value = a.default;
+        }());
+        obj[type][size] = value;
+      } else {
+        obj[type][size] = path;
+      }
+    });
   });
   imagesCollectionObject.value = obj;
 }());
 
-const imagesCollectionArray = Object.entries(imagesCollectionObject.value)
-  .filter((source) => !(
-    ['alt'].includes(source[0])
-  ));
-const sourcesCollectionArray = imagesCollectionArray
+const sourcesCollectionArray = Object.entries(imagesCollectionObject.value)
   .filter((source) => !(
     ['default'].includes(source[0])
   ));
 
-// (async function getImagesCollectionObject() {
-//   const imagesPath = await store.state.getImagesPath();
-//   const setImagesUrl = (image, option) => {
-//     if (image.includes('@images')) {
-//       const filenameRegex = /^(.+?)(\.[^.]+)?$/;
-//       const filenameSplit = image.match(filenameRegex);
-//       const filename = {
-//         title: filenameSplit[1].split('/').pop(),
-//         extension: filenameSplit[2],
-//       };
-
-//       const imageUrl = imagesPath.find((path) => {
-//         const isEqual = (path.includes(filename.title) && path.includes(filename.extension));
-//         return isEqual;
-//       });
-//       imagesCollectionObject.value[option.type][option.size] = imageUrl;
-//       isLoaded.value = true;
-//     }
-//   };
-//   imagesCollectionArray.forEach((imageArray) => {
-//     const imagesArray = Object.entries(imageArray[1]);
-//     imagesArray.forEach((imageData) => {
-//       const imageType = imageArray[0];
-//       const imageSize = imageData[0];
-//       const option = {
-//         type: imageType,
-//         size: imageSize,
-//       };
-//       const imagePath = imageData[1];
-//       setImagesUrl(imagePath, option);
-//     });
-//   });
-// }());
-
-const getSrcSet = (set) => Object.entries(set).map((image) => {
-  console.log(set);
-  return `${image[1]} ${image[0]}`;
-});
+const getSrcSet = (set) => Object.entries(imagesCollectionObject.value[set]).map((image) => `${image[1]} ${image[0]}`);
 
 </script>
 
 <template>
-  <picture v-show="imagesCollectionObject">
+  <picture>
     <source
-      v-for="(slide, index) in sourcesCollectionArray"
-      :key="index"
+      v-for="slide in sourcesCollectionArray"
+      :key="slide[0]"
       :type="slide[0]"
-      :srcset="imagesCollectionObject
-        ? getSrcSet(imagesCollectionObject[slide[0]])
-        : null"
+      :srcset="getSrcSet(slide[0])"
     >
     <img
       class="image"
-      :src="imagesCollectionObject
-        ? imagesCollectionObject.default['1x']
-        : null"
+      :src="imagesCollectionObject.default['1x']"
       :alt="imagesCollectionObject.alt"
       loading="lazy"
     >

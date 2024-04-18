@@ -17,7 +17,7 @@ import bannerItems from '@/assets/data/bannerData.js';
         :item="item"
       />
     </section>
-    <!-- <SliderTemplate
+    <SliderTemplate
       category="Шведские стенки"
     />
     <SliderTemplate
@@ -33,7 +33,7 @@ import bannerItems from '@/assets/data/bannerData.js';
           icon: 'catalog',
         }
       ]"
-    /> -->
+    />
   </div>
 </template>
 
