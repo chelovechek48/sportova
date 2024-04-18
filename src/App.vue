@@ -22,7 +22,7 @@ const lockScroll = () => {
     <NavigationPanel @changeScrollLocked="lockScroll" />
     <router-view class="router page-container" />
     <SubscribeTemplate />
-    <!-- <FooterTemplate /> -->
+    <FooterTemplate />
   </div>
 </template>
 

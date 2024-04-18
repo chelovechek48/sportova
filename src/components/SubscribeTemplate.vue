@@ -48,7 +48,7 @@
     display: flex;
     align-items: center;
     justify-content: space-between;
-    gap: 1.25rem;
+    gap: clamp(1rem, 4vw, 2rem);
     flex-wrap: wrap;
   }
 
@@ -70,7 +70,7 @@
     display: flex;
     flex-wrap: wrap;
     gap: container.$padding;
-    flex: 1 1 25rem;
+    flex: 1 1 23rem;
   }
 
   &__input {
