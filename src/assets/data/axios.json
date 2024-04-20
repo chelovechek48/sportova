@@ -1,0 +1,42 @@
+[
+  {
+      "id": 1,
+      "name": "Иван Грозный",
+      "imgSrc": "/sportova/src/assets/images/girl-on-the-stairs@1x.webp"
+  },
+  {
+      "id": 2,
+      "name": "Медный всадник",
+      "imgSrc": "girl-on-the-stairs@1x.webp"
+  },
+  {
+      "id": 3,
+      "name": "Утро в сосновом лесу",
+      "imgSrc": "girl-on-the-stairs@1x.webp"
+  },
+  {
+      "id": 4,
+      "name": "Девятый вал",
+      "imgSrc": "girl-on-the-stairs@1x.webp"
+  },
+  {
+      "id": 5,
+      "name": "Апофеоз войны",
+      "imgSrc": "girl-on-the-stairs@1x.webp"
+  },
+  {
+      "id": 6,
+      "name": "Черный квадрат",
+      "imgSrc": "girl-on-the-stairs@1x.webp"
+  },
+  {
+      "id": 7,
+      "name": "Грачи прилетели",
+      "imgSrc": "girl-on-the-stairs@1x.webp"
+  },
+  {
+      "id": 8,
+      "name": "Парижское кафе",
+      "imgSrc": "girl-on-the-stairs@1x.webp"
+  }
+]

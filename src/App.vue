@@ -1,28 +1,61 @@
 <script setup>
+import { onMounted, reactive, computed } from 'vue';
+import { useStore } from 'vuex';
+
 import NavigationPanel from '@components/NavigationPanel.vue';
 import SubscribeTemplate from '@components/SubscribeTemplate.vue';
 import FooterTemplate from '@components/FooterTemplate.vue';
 
-window.addEventListener('load', () => {
-  const windowWidth = window.innerWidth || document.documentElement.clientWidth;
-  const documentWidth = document.documentElement.scrollWidth;
-  const scrollbarWidth = windowWidth - documentWidth;
-  const root = document.querySelector(':root');
-  root.style.setProperty('--scroll-width', `${scrollbarWidth}px`);
+const store = useStore();
+const status = reactive({
+  downloaded: false,
 });
+const h1 = reactive('Картинная галерея');
 
-const lockScroll = () => {
-  document.body.classList.toggle('scroll-locked');
-};
+onMounted(() => {
+  store
+    .dispatch('downloadGallery')
+    .then(() => {
+      console.log('Галерея загружена.');
+      status.downloaded = true;
+    })
+    .catch((err) => console.log(err));
+});
+const gallery = computed(() => store.state.gallery);
+
+// window.addEventListener('load', () => {
+//   const windowWidth = window.innerWidth || document.documentElement.clientWidth;
+//   const documentWidth = document.documentElement.scrollWidth;
+//   const scrollbarWidth = windowWidth - documentWidth;
+//   const root = document.querySelector(':root');
+//   root.style.setProperty('--scroll-width', `${scrollbarWidth}px`);
+// });
+
+// const lockScroll = () => {
+//   document.body.classList.toggle('scroll-locked');
+// };
 
 </script>
 
 <template>
   <div class="page">
-    <NavigationPanel @changeScrollLocked="lockScroll" />
+    {{ h1 }}
+    <ul>
+      <li
+        v-for="item in gallery"
+        :key="item.id"
+      >
+        <div>
+          <img
+            :src="item.imgSrc"
+          >
+        </div>
+      </li>
+    </ul>
+    <!-- <NavigationPanel @changeScrollLocked="lockScroll" />
     <router-view class="router page-container" />
     <SubscribeTemplate />
-    <FooterTemplate />
+    <FooterTemplate /> -->
   </div>
 </template>
 
