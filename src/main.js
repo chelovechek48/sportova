@@ -4,6 +4,7 @@ import { createStore } from 'vuex';
 import axios from 'axios';
 import App from './App.vue';
 import router from './router';
+import ax from './assets/data/axios.json';
 
 const store = createStore({
   state() {
@@ -19,13 +20,16 @@ const store = createStore({
   actions: {
     downloadGallery(context) {
       return new Promise((resolve, reject) => {
-        axios.get('/sportova/src/assets/data/axios.json')
-          .then((response) => {
-            const array = response.data;
-            context.commit('load', array);
-          }).catch(((err) => {
-            alert(err.message);
-          }));
+        // axios.get('/sportova/src/assets/data/axios.json')
+        //   .then((response) => {
+        //     console.log(response);
+        //     const array = response.data;
+        //     context.commit('load', array);
+        //   }).catch(((err) => {
+        //     alert(err.message);
+        //   }));
+
+        context.commit('load', ax);
       });
     },
   },

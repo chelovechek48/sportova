@@ -10,7 +10,6 @@ const store = useStore();
 const status = reactive({
   downloaded: false,
 });
-const h1 = reactive('Картинная галерея');
 
 onMounted(() => {
   store
@@ -39,7 +38,6 @@ const gallery = computed(() => store.state.gallery);
 
 <template>
   <div class="page">
-    {{ h1 }}
     <ul>
       <li
         v-for="item in gallery"

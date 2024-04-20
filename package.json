@@ -5,7 +5,8 @@
   "type": "module",
   "scripts": {
     "dev": "vite --host",
-    "build": "vite build"
+    "build": "vite build",
+    "development": "vite build"
   },
   "browserslist": "> 0.5%, last 2 versions, not dead",
   "dependencies": {
