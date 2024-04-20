@@ -5,10 +5,10 @@ const products = [
     description: 'Проснувшись однажды утром после беспокойного сна, Грегор Замза обнаружил, что он у себя в постели превратился в страшное насекомое.',
     image: {
       'image/webp': {
-        '1x': import('@images/girl-on-the-stairs@1x.webp'),
+        '1x': 'girl-on-the-stairs@1x.webp',
       },
       default: {
-        '1x': import('@images/girl-on-the-stairs@1x.webp'),
+        '1x': 'girl-on-the-stairs@1x.webp',
       },
       alt: 'девочка забирается по шведской стенке',
     },
@@ -20,10 +20,10 @@ const products = [
     description: 'Приглашаем к сотрудничеству',
     image: {
       'image/webp': {
-        '1x': import('@images/sewing@1x.webp'),
+        '1x': 'sewing@1x.webp',
       },
       default: {
-        '1x': import('@images/sewing@1x.webp'),
+        '1x': 'sewing@1x.webp',
       },
       alt: 'швейная машинка',
     },
@@ -35,10 +35,10 @@ const products = [
     description: 'Н.Новгород, ул.Народная 20 Ежедневно с 9:00 до 19:00',
     image: {
       'image/webp': {
-        '1x': import('@images/showroom@1x.webp'),
+        '1x': 'showroom@1x.webp',
       },
       default: {
-        '1x': import('@images/showroom@1x.webp'),
+        '1x': 'showroom@1x.webp',
       },
       alt: 'шведская стенка в углу комнаты',
     },

@@ -1,40 +1,29 @@
 <script setup>
-import { useStore } from 'vuex';
 
 import NavigationPanel from '@components/NavigationPanel.vue';
 import SubscribeTemplate from '@components/SubscribeTemplate.vue';
 import FooterTemplate from '@components/FooterTemplate.vue';
 
-const store = useStore();
+window.addEventListener('load', () => {
+  const windowWidth = window.innerWidth || document.documentElement.clientWidth;
+  const documentWidth = document.documentElement.scrollWidth;
+  const scrollbarWidth = windowWidth - documentWidth;
+  const root = document.querySelector(':root');
+  root.style.setProperty('--scroll-width', `${scrollbarWidth}px`);
+});
 
-// window.addEventListener('load', () => {
-//   const windowWidth = window.innerWidth || document.documentElement.clientWidth;
-//   const documentWidth = document.documentElement.scrollWidth;
-//   const scrollbarWidth = windowWidth - documentWidth;
-//   const root = document.querySelector(':root');
-//   root.style.setProperty('--scroll-width', `${scrollbarWidth}px`);
-// });
-
-// const lockScroll = () => {
-//   document.body.classList.toggle('scroll-locked');
-// };
+const lockScroll = () => {
+  document.body.classList.toggle('scroll-locked');
+};
 
 </script>
 
 <template>
   <div class="page">
-    <img
-      :src="store.state.getImage('girl-on-the-stairs@1x.webp')"
-      alt=""
-    >
-    <!-- <img
-      :src="store.state.getPath('girl-on-the-stairs@1x.webp')"
-      alt=""
-    > -->
-    <!-- <NavigationPanel @changeScrollLocked="lockScroll" />
+    <NavigationPanel @changeScrollLocked="lockScroll" />
     <router-view class="router page-container" />
     <SubscribeTemplate />
-    <FooterTemplate /> -->
+    <FooterTemplate />
   </div>
 </template>
 

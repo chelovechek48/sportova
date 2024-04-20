@@ -1,5 +1,7 @@
 <script setup>
-import { ref } from 'vue';
+import { useStore } from 'vuex';
+
+const store = useStore();
 
 const props = defineProps({
   src: {
@@ -18,50 +20,31 @@ const props = defineProps({
   },
 });
 
-const imagesCollectionObject = ref(null);
-(function getImagesCollection() {
-  const obj = props.src;
-  delete (obj.alt);
-  const entries = Object.entries(obj);
-  entries.forEach((el) => {
-    const type = el[0];
-    const optionArr = Object.entries(el[1]);
-    optionArr.forEach((option) => {
-      const path = option[1];
-      const size = option[0];
-      if (typeof path === 'object') {
-        const value = ref(null);
-        (async function gett() {
-          const a = await path;
-          value.value = a.default;
-        }());
-        obj[type][size] = value;
-      } else {
-        obj[type][size] = path;
-      }
-    });
+const getSrcset = (type) => {
+  const imageSources = Object.entries(props.src[type]);
+  const srcsetArray = imageSources.map((imageData) => {
+    const size = imageData[0];
+    const path = store.state.getImage(imageData[1]);
+    return `${path} ${size}`;
   });
-  imagesCollectionObject.value = obj;
-}());
+  return srcsetArray.join(', ');
+};
 
-const getSrcSet = (set) => Object.entries(imagesCollectionObject.value[set]).map((image) => `${image[1]} ${image[0]}`);
-
-const sourcesCollectionArray = imagesCollectionObject.value
-  ? Object.entries(imagesCollectionObject.value)
-    .filter((source) => !(
-      ['default'].includes(source[0])
-    ))
-  : null;
+const imageTypesArray = Object.entries(props.src)
+  .filter((source) => !(
+    ['default', 'alt'].includes(source[0])
+  ))
+  .map((source) => source[0]);
 
 </script>
 
 <template>
-  <picture v-if="imagesCollectionObject">
+  <picture>
     <source
-      v-for="slide in sourcesCollectionArray"
-      :key="slide[0]"
-      :type="slide[0]"
-      :srcset="getSrcSet(slide[0])"
+      v-for="imageType in imageTypesArray"
+      :key="imageType"
+      :type="imageType"
+      :srcset="getSrcset(imageType)"
     >
     <img
       class="image"
@@ -69,8 +52,8 @@ const sourcesCollectionArray = imagesCollectionObject.value
         aspect-ratio: ${aspectRatio};
         object-fit: ${objectFit};
       `"
-      :src="imagesCollectionObject.default['1x']"
-      :alt="imagesCollectionObject.alt"
+      :src="store.state.getImage(props.src.default['1x'])"
+      :alt="props.src.alt"
       loading="lazy"
     >
   </picture>
