@@ -3,8 +3,6 @@ import { ref } from 'vue';
 import ImgTemplate from '@components/ImgTemplate.vue';
 import SvgTemplate from '@components/SvgTemplate.vue';
 
-const imagesCollection = import.meta.glob('@images/*.*');
-
 defineProps({
   item: {
     type: Object,
@@ -24,9 +22,8 @@ const buttonIsActive = ref('-1');
     @focusout="buttonIsActive = '-1'"
   >
     <ImgTemplate
-      class="card__image"
-      :images-path="imagesCollection"
       :src="item.image"
+      object-fit="contain"
     />
     <header class="card__title">
       {{ item.title }}
@@ -68,12 +65,6 @@ const buttonIsActive = ref('-1');
   display: flex;
   flex-direction: column;
   gap: 0.75rem;
-
-  &__image {
-    width: 100%;
-    aspect-ratio: 1;
-    object-fit: contain;
-  }
 
   &__title {
     font-size: 1rem;

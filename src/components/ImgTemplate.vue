@@ -6,6 +6,16 @@ const props = defineProps({
     type: Object,
     required: true,
   },
+  aspectRatio: {
+    type: String,
+    required: false,
+    default: '1 / 1',
+  },
+  objectFit: {
+    type: String,
+    required: false,
+    default: 'cover',
+  },
 });
 
 const imagesCollectionObject = ref(null);
@@ -34,17 +44,19 @@ const imagesCollectionObject = ref(null);
   imagesCollectionObject.value = obj;
 }());
 
-const sourcesCollectionArray = Object.entries(imagesCollectionObject.value)
-  .filter((source) => !(
-    ['default'].includes(source[0])
-  ));
-
 const getSrcSet = (set) => Object.entries(imagesCollectionObject.value[set]).map((image) => `${image[1]} ${image[0]}`);
+
+const sourcesCollectionArray = imagesCollectionObject.value
+  ? Object.entries(imagesCollectionObject.value)
+    .filter((source) => !(
+      ['default'].includes(source[0])
+    ))
+  : null;
 
 </script>
 
 <template>
-  <picture>
+  <picture v-if="imagesCollectionObject">
     <source
       v-for="slide in sourcesCollectionArray"
       :key="slide[0]"
@@ -53,6 +65,10 @@ const getSrcSet = (set) => Object.entries(imagesCollectionObject.value[set]).map
     >
     <img
       class="image"
+      :style="`
+        aspect-ratio: ${aspectRatio};
+        object-fit: ${objectFit};
+      `"
       :src="imagesCollectionObject.default['1x']"
       :alt="imagesCollectionObject.alt"
       loading="lazy"
@@ -62,11 +78,8 @@ const getSrcSet = (set) => Object.entries(imagesCollectionObject.value[set]).map
 
 <style lang="scss" scoped>
 .image {
-  aspect-ratio: inherit;
-  width: inherit;
-  height: inherit;
-  object-fit: inherit;
-  object-position: inherit;
-  border-radius: inherit;
+  width: 100%;
+  height: 100%;
+  object-position: center;
 }
 </style>
