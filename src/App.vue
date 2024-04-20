@@ -1,26 +1,12 @@
 <script setup>
-import { onMounted, reactive, computed } from 'vue';
-import { useStore } from 'vuex';
 
 import NavigationPanel from '@components/NavigationPanel.vue';
 import SubscribeTemplate from '@components/SubscribeTemplate.vue';
 import FooterTemplate from '@components/FooterTemplate.vue';
 
-const store = useStore();
-const status = reactive({
-  downloaded: false,
-});
-
-onMounted(() => {
-  store
-    .dispatch('downloadGallery')
-    .then(() => {
-      console.log('Галерея загружена.');
-      status.downloaded = true;
-    })
-    .catch((err) => console.log(err));
-});
-const gallery = computed(() => store.state.gallery);
+const glob = import.meta.glob('@/assets/images/*.*', { eager: true });
+const images = Object.entries(glob).map(([key, value]) => [(key), value.default]);
+console.log(images);
 
 // window.addEventListener('load', () => {
 //   const windowWidth = window.innerWidth || document.documentElement.clientWidth;
@@ -38,18 +24,6 @@ const gallery = computed(() => store.state.gallery);
 
 <template>
   <div class="page">
-    <ul>
-      <li
-        v-for="item in gallery"
-        :key="item.id"
-      >
-        <div>
-          <img
-            :src="item.imgSrc"
-          >
-        </div>
-      </li>
-    </ul>
     <!-- <NavigationPanel @changeScrollLocked="lockScroll" />
     <router-view class="router page-container" />
     <SubscribeTemplate />
