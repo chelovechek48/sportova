@@ -1,12 +1,11 @@
 <script setup>
+import { useStore } from 'vuex';
 
 import NavigationPanel from '@components/NavigationPanel.vue';
 import SubscribeTemplate from '@components/SubscribeTemplate.vue';
 import FooterTemplate from '@components/FooterTemplate.vue';
 
-const images = import.meta.glob('@/assets/images/*.*', { eager: true });
-// const images = Object.entries(glob).map(([key, value]) => [key, value.default]);
-console.log(images);
+const store = useStore();
 
 // window.addEventListener('load', () => {
 //   const windowWidth = window.innerWidth || document.documentElement.clientWidth;
@@ -20,21 +19,18 @@ console.log(images);
 //   document.body.classList.toggle('scroll-locked');
 // };
 
-const getPath = (img) => {
-  const image = `/src/assets/images/${img}`;
-  console.log(images[image]);
-  const imagee = images[image].default;
-  return imagee;
-};
-
 </script>
 
 <template>
   <div class="page">
     <img
-      :src="getPath('girl-on-the-stairs@1x.webp')"
+      :src="store.state.getImage('girl-on-the-stairs@1x.webp')"
       alt=""
     >
+    <!-- <img
+      :src="store.state.getPath('girl-on-the-stairs@1x.webp')"
+      alt=""
+    > -->
     <!-- <NavigationPanel @changeScrollLocked="lockScroll" />
     <router-view class="router page-container" />
     <SubscribeTemplate />

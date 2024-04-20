@@ -7,15 +7,10 @@ import router from './router';
 const store = createStore({
   state() {
     return {
-      async getImagesPath() {
-        const imagesCollection = import.meta.glob('@images/*.*');
-        const imagesPath = await Promise.all(
-          Object.values(imagesCollection).map(async (image) => {
-            const module = await image();
-            return module.default;
-          }),
-        );
-        return imagesPath;
+      images: import.meta.glob('@images/*.*', { eager: true }),
+      getImage(imageName) {
+        const imageNameWithPath = `/src/assets/images/${imageName}`;
+        return this.images[imageNameWithPath].default;
       },
     };
   },
