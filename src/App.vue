@@ -4,8 +4,8 @@ import NavigationPanel from '@components/NavigationPanel.vue';
 import SubscribeTemplate from '@components/SubscribeTemplate.vue';
 import FooterTemplate from '@components/FooterTemplate.vue';
 
-const glob = import.meta.glob('@/assets/images/*.*', { eager: true });
-const images = Object.entries(glob).map(([key, value]) => [(key), value.default]);
+const images = import.meta.glob('@/assets/images/*.*', { eager: true });
+// const images = Object.entries(glob).map(([key, value]) => [key, value.default]);
 console.log(images);
 
 // window.addEventListener('load', () => {
@@ -20,10 +20,21 @@ console.log(images);
 //   document.body.classList.toggle('scroll-locked');
 // };
 
+const getPath = (img) => {
+  const image = `/src/assets/images/${img}`;
+  console.log(images[image]);
+  const imagee = images[image].default;
+  return imagee;
+};
+
 </script>
 
 <template>
   <div class="page">
+    <img
+      :src="getPath('girl-on-the-stairs@1x.webp')"
+      alt=""
+    >
     <!-- <NavigationPanel @changeScrollLocked="lockScroll" />
     <router-view class="router page-container" />
     <SubscribeTemplate />
