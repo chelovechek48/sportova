@@ -17,10 +17,10 @@ import bannerItems from '@/assets/data/bannerData.json';
         :item="item"
       />
     </section>
-    <!-- <SliderTemplate
+    <SliderTemplate
       category="Шведские стенки"
-    /> -->
-    <!-- <SliderTemplate
+    />
+    <SliderTemplate
       category="Уличные спортивные комплексы"
     />
     <SectionTemplate
@@ -33,7 +33,7 @@ import bannerItems from '@/assets/data/bannerData.json';
           icon: 'catalog',
         }
       ]"
-    /> -->
+    />
   </div>
 </template>
 
