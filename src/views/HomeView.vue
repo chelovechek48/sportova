@@ -4,7 +4,7 @@ import SliderTemplate from '@components/SliderTemplate.vue';
 import SectionTemplate from '@components/SectionTemplate.vue';
 
 import categoryData from '@/assets/data/categoryData.json';
-import bannerItems from '@/assets/data/bannerData.js';
+import bannerItems from '@/assets/data/bannerData.json';
 </script>
 
 <template>
@@ -17,10 +17,10 @@ import bannerItems from '@/assets/data/bannerData.js';
         :item="item"
       />
     </section>
-    <SliderTemplate
+    <!-- <SliderTemplate
       category="Шведские стенки"
-    />
-    <SliderTemplate
+    /> -->
+    <!-- <SliderTemplate
       category="Уличные спортивные комплексы"
     />
     <SectionTemplate
@@ -33,7 +33,7 @@ import bannerItems from '@/assets/data/bannerData.js';
           icon: 'catalog',
         }
       ]"
-    />
+    /> -->
   </div>
 </template>
 

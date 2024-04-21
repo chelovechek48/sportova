@@ -8,10 +8,6 @@ const store = createStore({
   state() {
     return {
       images: import.meta.glob('@images/*.*', { eager: true }),
-      getImage(imageName) {
-        const imageNameWithPath = `/src/assets/images/${imageName}`;
-        return this.images[imageNameWithPath].default;
-      },
     };
   },
 });

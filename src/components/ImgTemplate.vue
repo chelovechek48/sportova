@@ -20,11 +20,16 @@ const props = defineProps({
   },
 });
 
+const getImage = (imageName) => {
+  const imageNameWithPath = `/src/assets/images/${imageName}`;
+  return store.state.images[imageNameWithPath].default;
+};
+
 const getSrcset = (type) => {
   const imageSources = Object.entries(props.src[type]);
   const srcsetArray = imageSources.map((imageData) => {
     const size = imageData[0];
-    const path = store.state.getImage(imageData[1]);
+    const path = getImage(imageData[1]);
     return `${path} ${size}`;
   });
   return srcsetArray.join(', ');
@@ -52,7 +57,7 @@ const imageTypesArray = Object.entries(props.src)
         aspect-ratio: ${aspectRatio};
         object-fit: ${objectFit};
       `"
-      :src="store.state.getImage(props.src.default['1x'])"
+      :src="getImage(props.src.default['1x'])"
       :alt="props.src.alt"
       loading="lazy"
     >
