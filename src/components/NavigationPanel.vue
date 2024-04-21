@@ -196,6 +196,7 @@ $button-padding: clamp(0.5rem , 3vw, 0.75rem);
       width: auto;
       flex: 0 0 auto;
       z-index: 1;
+      pointer-events: none;
     }
     &-input {
       font-size: 1rem;
