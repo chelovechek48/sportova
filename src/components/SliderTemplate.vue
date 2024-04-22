@@ -2,7 +2,7 @@
 import { Swiper, SwiperSlide } from 'swiper/vue';
 import { Autoplay, Keyboard } from 'swiper/modules';
 
-import products from '@/assets/data/productsData.json';
+import products from '@/assets/json/products.json';
 import ProductCard from '@components/ProductCard.vue';
 
 defineProps({

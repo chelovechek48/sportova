@@ -3,8 +3,8 @@ import BannerTemplate from '@components/BannerTemplate.vue';
 import SliderTemplate from '@components/SliderTemplate.vue';
 import SectionTemplate from '@components/SectionTemplate.vue';
 
-import categoryData from '@/assets/data/categoryData.json';
-import bannerItems from '@/assets/data/bannerData.json';
+import categoryData from '@/assets/json/category.json';
+import bannerItems from '@/assets/json/banner.json';
 
 const categoryList = [
   ...categoryData,
