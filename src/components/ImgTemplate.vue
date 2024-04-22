@@ -8,16 +8,6 @@ const props = defineProps({
     type: Object,
     required: true,
   },
-  aspectRatio: {
-    type: String,
-    required: false,
-    default: '1 / 1',
-  },
-  objectFit: {
-    type: String,
-    required: false,
-    default: 'cover',
-  },
 });
 
 const getImage = (imageName) => {
@@ -51,24 +41,22 @@ const imageTypesArray = Object.entries(props.src)
       :type="imageType"
       :srcset="getSrcset(imageType)"
     >
-    <!-- <img
-      class="image"
-      :style="`
-        aspect-ratio: ${aspectRatio};
-        object-fit: ${objectFit};
-      `"
-      :src="getImage(props.src.default['1x'])"
+    <img
+      src=""
       :alt="props.src.alt"
       loading="lazy"
-    > -->
-    <img :alt="props.src.alt">
+    >
   </picture>
 </template>
 
 <style lang="scss" scoped>
-.image {
+picture {
+  width: 100%;
+}
+img {
   width: 100%;
   height: 100%;
   object-position: center;
+  object-fit: inherit;
 }
 </style>

@@ -22,8 +22,8 @@ const buttonIsActive = ref('-1');
     @focusout="buttonIsActive = '-1'"
   >
     <ImgTemplate
+      class="card__image"
       :src="item.image"
-      object-fit="contain"
     />
     <header class="card__title">
       {{ item.title }}
@@ -65,6 +65,11 @@ const buttonIsActive = ref('-1');
   display: flex;
   flex-direction: column;
   gap: 0.75rem;
+
+  &__image {
+    aspect-ratio: 1;
+    object-fit: contain;
+  }
 
   &__title {
     font-size: 1rem;

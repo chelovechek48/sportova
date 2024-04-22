@@ -5,6 +5,15 @@ import SectionTemplate from '@components/SectionTemplate.vue';
 
 import categoryData from '@/assets/data/categoryData.json';
 import bannerItems from '@/assets/data/bannerData.json';
+
+const categoryList = [
+  ...categoryData,
+  {
+    link: '',
+    text: 'Открыть каталог',
+    icon: 'catalog',
+  },
+];
 </script>
 
 <template>
@@ -25,14 +34,7 @@ import bannerItems from '@/assets/data/bannerData.json';
     />
     <SectionTemplate
       title="Каталог товаров"
-      :items="[
-        ...categoryData,
-        {
-          link: '',
-          text: 'Открыть каталог',
-          icon: 'catalog',
-        }
-      ]"
+      :items="categoryList"
     />
   </div>
 </template>
