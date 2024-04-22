@@ -1,6 +1,6 @@
 {
   "icons": [
-    { "src": "/tableau.png", "type": "image/png", "sizes": "192x192" },
-    { "src": "/tableau.png", "type": "image/png", "sizes": "512x512" }
+    { "src": "https://raw.githubusercontent.com/chelovechek48/sportova/main/src/assets/favicon/apple-touch-icon.png", "type": "image/png", "sizes": "192x192" },
+    { "src": "https://raw.githubusercontent.com/chelovechek48/sportova/main/src/assets/favicon/apple-touch-icon.png", "type": "image/png", "sizes": "512x512" }
   ]
 }
