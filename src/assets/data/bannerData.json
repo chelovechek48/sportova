@@ -7,9 +7,6 @@
       "image/webp": {
         "1x": "girl-on-the-stairs@1x.webp"
       },
-      "default": {
-        "1x": "girl-on-the-stairs@1x.webp"
-      },
       "alt": "девочка забирается по шведской стенке"
     },
     "button": "Перейти в конструктор"
@@ -22,9 +19,6 @@
       "image/webp": {
         "1x": "sewing@1x.webp"
       },
-      "default": {
-        "1x": "sewing@1x.webp"
-      },
       "alt": "швейная машинка"
     },
     "button": "Подробнее"
@@ -35,9 +29,6 @@
     "description": "Н.Новгород, ул.Народная 20 Ежедневно с 9:00 до 19:00",
     "image": {
       "image/webp": {
-        "1x": "showroom@1x.webp"
-      },
-      "default": {
         "1x": "showroom@1x.webp"
       },
       "alt": "шведская стенка в углу комнаты"

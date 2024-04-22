@@ -51,7 +51,7 @@ const imageTypesArray = Object.entries(props.src)
       :type="imageType"
       :srcset="getSrcset(imageType)"
     >
-    <img
+    <!-- <img
       class="image"
       :style="`
         aspect-ratio: ${aspectRatio};
@@ -60,7 +60,8 @@ const imageTypesArray = Object.entries(props.src)
       :src="getImage(props.src.default['1x'])"
       :alt="props.src.alt"
       loading="lazy"
-    >
+    > -->
+    <img :alt="props.src.alt">
   </picture>
 </template>
 
