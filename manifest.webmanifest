@@ -1,6 +1,7 @@
 {
   "name": "Sportova",
   "short_name": "Sportova",
+  "display": "standalone",
   "background_color": "#fff",
   "theme_color": "#ff3385",
   "icons": [
@@ -8,19 +9,7 @@
       "src": "https://squoosh.app/c/icon-large-cb438cac.png",
       "type": "image/png",
       "sizes": "1024x1024"
-    },
-    {
-      "src": "https://squoosh.app/c/icon-large-maskable-c2078ced.png",
-      "type": "image/png",
-      "sizes": "1024x1024",
-      "purpose": "maskable"
     }
   ],
-  "description": "Compress and compare images with different codecs, right in your browser.",
-  "lang": "en",
-  "categories": [
-    "photo",
-    "productivity",
-    "utilities"
-  ]
+  "lang": "ru"
 }
