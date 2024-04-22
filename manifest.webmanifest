@@ -1,19 +1,16 @@
 {
-  "name": "Squoosh",
-  "short_name": "Squoosh",
-  "start_url": "/?utm_medium=PWA&utm_source=launcher",
-  "display": "standalone",
-  "orientation": "any",
+  "name": "Sportova",
+  "short_name": "Sportova",
   "background_color": "#fff",
   "theme_color": "#ff3385",
   "icons": [
     {
-      "src": "https://squoosh.app/c/icon-large-cb438cac.png",
+      "src": "/icon-192.png",
       "type": "image/png",
       "sizes": "1024x1024"
     },
     {
-      "src": "https://squoosh.app/c/icon-large-maskable-c2078ced.png",
+      "src": "/icon-192.png",
       "type": "image/png",
       "sizes": "1024x1024",
       "purpose": "maskable"
