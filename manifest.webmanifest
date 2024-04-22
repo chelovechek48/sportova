@@ -5,12 +5,12 @@
   "theme_color": "#ff3385",
   "icons": [
     {
-      "src": "/icon-192.png",
+      "src": "https://squoosh.app/c/icon-large-cb438cac.png",
       "type": "image/png",
       "sizes": "1024x1024"
     },
     {
-      "src": "/icon-192.png",
+      "src": "https://squoosh.app/c/icon-large-maskable-c2078ced.png",
       "type": "image/png",
       "sizes": "1024x1024",
       "purpose": "maskable"
