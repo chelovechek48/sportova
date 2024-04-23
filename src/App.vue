@@ -1,8 +1,10 @@
 <script setup>
-
 import NavigationPanel from '@components/NavigationPanel.vue';
 import SubscribeTemplate from '@components/SubscribeTemplate.vue';
 import FooterTemplate from '@components/FooterTemplate.vue';
+import logo from '@/../yandex-tableau.svg';
+
+console.log(logo);
 
 window.addEventListener('load', () => {
   const windowWidth = window.innerWidth || document.documentElement.clientWidth;
