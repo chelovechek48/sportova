@@ -3,7 +3,7 @@
   "api_version": 1,
   "layout":
     {
-    "logo": "https://raw.githubusercontent.com/chelovechek48/sportova/main/yandex-tableau.svg",
+    "logo": "/sportova/yandex-tableau.svg",
     "color": "#FFFFFF",
     "show_title": false
     }
