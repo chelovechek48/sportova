@@ -1,10 +1,9 @@
 {
   "version": "1.0",
   "api_version": 1,
-  "layout":
-    {
-    "logo": "/yandex-tableau.svg",
-    "color": "#E9E9E9",
+  "layout": {
+    "logo": "./yandex-tableau.svg",
+    "color": "#FFFFFF",
     "show_title": false
-    }
   }
+}
