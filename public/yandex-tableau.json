@@ -3,8 +3,8 @@
   "api_version": 1,
   "layout":
     {
-    "logo": "./yandex-tableau.svg",
-    "color": "#F9F9F9",
+    "logo": "/yandex-tableau.svg",
+    "color": "#E9E9E9",
     "show_title": false
     }
   }
