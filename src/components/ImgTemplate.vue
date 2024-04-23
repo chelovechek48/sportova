@@ -58,5 +58,6 @@ img {
   height: 100%;
   object-position: center;
   object-fit: inherit;
+  aspect-ratio: inherit;
 }
 </style>
