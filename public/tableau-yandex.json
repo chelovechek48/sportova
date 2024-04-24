@@ -2,7 +2,7 @@
   "version": "1.0",
   "api_version": 1,
   "layout": {
-    "logo": "./yandex-tableau.svg",
+    "logo": "./tableau-yandex.svg",
     "color": "#FFFFFF",
     "show_title": false
   }
