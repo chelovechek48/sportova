@@ -151,7 +151,6 @@ $button-padding: clamp(0.5rem , 3vw, 0.75rem);
 .navigation {
   $gray-background-color: colors.$white;
   background-color: $gray-background-color;
-  box-shadow: var(--scroll-width) 0 0 0 $gray-background-color;
 
   @media (max-width: $tablet) {
     padding-block: $button-padding;
@@ -262,7 +261,7 @@ $button-padding: clamp(0.5rem , 3vw, 0.75rem);
     }
     transition: all 250ms ease;
 
-    @media (max-width: 45rem) {
+    @media (max-width: $tablet-portrait) {
       &_mobile {
         --burger-gap: 0.5rem;
         &, &::before, &::after {
@@ -273,7 +272,7 @@ $button-padding: clamp(0.5rem , 3vw, 0.75rem);
         display: none;
       }
     }
-    @media (min-width: calc(45rem + 1px)) {
+    @media (min-width: calc($tablet-portrait + 1px)) {
       &_mobile-wrapper {
         display: none;
       }
@@ -305,7 +304,7 @@ $button-padding: clamp(0.5rem , 3vw, 0.75rem);
       left: 0;
     }
 
-    @media (max-width: 45rem) {
+    @media (max-width: $tablet-portrait) {
       @include logo-ratio(
         $height: calc($button-padding * 2 + $icon-height),
         $ratio: calc(212 / 231)
@@ -315,10 +314,9 @@ $button-padding: clamp(0.5rem , 3vw, 0.75rem);
 }
 
 .menu {
-  @media (min-width: calc(45rem + 1px)) {
+  @media (min-width: calc($tablet-portrait + 1px)) {
     color: #fff;
     background-color: colors.$blue;
-    box-shadow: var(--scroll-width) 0 0 0 colors.$blue;
 
     &__container {
       display: flex;
@@ -329,7 +327,7 @@ $button-padding: clamp(0.5rem , 3vw, 0.75rem);
       display: flex;
     }
   }
-  @media (max-width: 45rem) {
+  @media (max-width: $tablet-portrait) {
     display: none;
   }
 
@@ -347,7 +345,7 @@ $button-padding: clamp(0.5rem , 3vw, 0.75rem);
     z-index: -1;
     position: absolute;
     top: 100%;
-    left: calc( (100vw - min( 100vw, container.$width + var(--scroll-width) )) / 2 );
+    left: calc( (100% - min( 100%, container.$width)) / 2 );
     max-height: calc(100vh - 100%);
     max-height: calc(100dvh - 100%);
 
@@ -362,13 +360,13 @@ $button-padding: clamp(0.5rem , 3vw, 0.75rem);
       background-color: rgba(#000, 0.75);
       overflow: auto;
 
-      @media (max-width: 45rem) {
+      @media (max-width: $tablet-portrait) {
         width: calc(100vw - container.$padding * 2);
       }
     }
 
     &-button {
-      @media (min-width: calc(45rem + 1px)) {
+      @media (min-width: calc($tablet-portrait + 1px)) {
         flex-shrink: 0;
         font-size: inherit;
         background-color: colors.$blue-dark;
@@ -378,7 +376,7 @@ $button-padding: clamp(0.5rem , 3vw, 0.75rem);
         align-items: center;
         gap: 0.5rem;
       }
-      @media (max-width: 45rem) {
+      @media (max-width: $tablet-portrait) {
         display: none;
       }
     }
@@ -441,7 +439,7 @@ $button-padding: clamp(0.5rem , 3vw, 0.75rem);
       }
     }
     .header__logo {
-      @media (min-width: calc(45rem + 1px)) {
+      @media (min-width: calc($tablet-portrait + 1px)) {
         @include logo-ratio($height: 3.75rem, $ratio: calc(212 / 231));
       }
     }
@@ -456,7 +454,7 @@ $button-padding: clamp(0.5rem , 3vw, 0.75rem);
       @media (min-width: calc($tablet + 1px)) {
         @include logo-ratio($height: 4.5rem, $ratio: calc(571 / 136));
       }
-      @media (max-width: $tablet) and (min-width: calc(45rem + 1px)) {
+      @media (max-width: $tablet) and (min-width: calc($tablet-portrait + 1px)) {
         @include logo-ratio($height: 3.75rem, $ratio: calc(571 / 136));
       }
     }

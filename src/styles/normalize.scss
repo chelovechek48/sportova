@@ -1,3 +1,5 @@
+@use '@vars/breakpoints' as *;
+
 * {
   color: inherit;
   text-decoration: none;
@@ -26,6 +28,7 @@ img {
 }
 
 html {
+  scrollbar-gutter: stable;
   scroll-behavior: smooth;
   -webkit-tap-highlight-color: transparent;
 }

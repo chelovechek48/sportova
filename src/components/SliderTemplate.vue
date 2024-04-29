@@ -10,6 +10,11 @@ defineProps({
     type: String,
     required: true,
   },
+  title: {
+    type: String,
+    required: false,
+    default: null,
+  },
 });
 
 let swiper;
@@ -84,7 +89,7 @@ const containerWidth = 1280;
     :loop="true"
   >
     <h2 class="slider__title">
-      {{ category }}
+      {{ title || category }}
     </h2>
     <Swiper-slide
       class="slider__slide"

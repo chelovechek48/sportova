@@ -1,16 +1,7 @@
 <script setup>
-
 import NavigationPanel from '@components/NavigationPanel.vue';
 import SubscribeTemplate from '@components/SubscribeTemplate.vue';
 import FooterTemplate from '@components/FooterTemplate.vue';
-
-window.addEventListener('load', () => {
-  const windowWidth = window.innerWidth || document.documentElement.clientWidth;
-  const documentWidth = document.documentElement.scrollWidth;
-  const scrollbarWidth = windowWidth - documentWidth;
-  const root = document.querySelector(':root');
-  root.style.setProperty('--scroll-width', `${scrollbarWidth}px`);
-});
 
 const lockScroll = () => {
   document.body.classList.toggle('scroll-locked');
@@ -32,14 +23,10 @@ const lockScroll = () => {
 @use '@vars/container';
 @use '@vars/colors';
 
-:root {
-  --scroll-width: 0;
-}
 body {
   background-color: colors.$gray-background;
   &.scroll-locked {
     overflow: hidden;
-    padding-right: var(--scroll-width);
   }
 }
 
