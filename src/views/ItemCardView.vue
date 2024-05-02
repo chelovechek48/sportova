@@ -1,8 +1,8 @@
 <script setup>
-import { ref, onMounted, onUpdated } from 'vue';
+import { ref, onUpdated } from 'vue';
 import { useRoute } from 'vue-router';
 
-// import BreadCrumbs from '@components/BreadCrumbs.vue';
+import BreadCrumbs from '@components/BreadCrumbs.vue';
 import ProductPage from '@components/ProductPage.vue';
 import SliderTemplate from '@components/SliderTemplate.vue';
 
@@ -14,16 +14,6 @@ const getProduct = () => products.find((item) => item.id === route.query.id);
 
 const product = ref(getProduct());
 
-const pageSrollTo = (position) => {
-  window.scrollTo({
-    top: position,
-    behavior: 'smooth',
-  });
-};
-
-onMounted(() => {
-  pageSrollTo(0);
-});
 onUpdated(() => {
   product.value = getProduct();
 });
@@ -32,7 +22,15 @@ onUpdated(() => {
 
 <template>
   <section>
-    <!-- <BreadCrumbs /> -->
+    <BreadCrumbs
+      :last-point="{
+        text: product.category,
+        path: {
+          name: 'catalog',
+          query: { category: product.category }
+        }
+      }"
+    />
     <ProductPage :item="product" />
     <SliderTemplate
       title="Похожие товары"

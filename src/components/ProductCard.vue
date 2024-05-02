@@ -17,7 +17,7 @@ const buttonIsActive = ref('-1');
 <template>
   <router-link
     class="card"
-    :to="`/sportova/item?id=${item.id}`"
+    :to="{ name: 'item', query: { id: item.id }}"
     @focusin="buttonIsActive = '0'"
     @focusout="buttonIsActive = '-1'"
   >

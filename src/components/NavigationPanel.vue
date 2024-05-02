@@ -1,22 +1,14 @@
 <script setup>
 import { ref } from 'vue';
+import { useStore } from 'vuex';
 import LinkSvg from '@components/LinkSvg.vue';
 import SvgTemplate from '@components/SvgTemplate.vue';
 import categoryData from '@/assets/json/category.json';
 
+const store = useStore();
 const headerIsOpen = ref(false);
 
 const emit = defineEmits(['changeScrollLocked']);
-
-const pageWasScrolled = ref(false);
-const handleScroll = () => {
-  if (window.scrollY > 0) {
-    pageWasScrolled.value = true;
-  } else {
-    pageWasScrolled.value = false;
-  }
-};
-window.addEventListener('scroll', handleScroll);
 
 const toggleMenu = () => {
   headerIsOpen.value = !headerIsOpen.value;
@@ -30,7 +22,7 @@ const toggleMenu = () => {
     class="header"
     :class="`
       ${headerIsOpen ? 'header_opened' : 'header_closed'}
-      ${pageWasScrolled ? 'header_scrolled' : 'header_no-scrolled'}
+      ${store.state.isScrolled ? 'header_scrolled' : 'header_no-scrolled'}
     `"
   >
     <div class="navigation">
@@ -92,11 +84,11 @@ const toggleMenu = () => {
           <ul class="menu__list">
             <li
               v-for="menuItem in categoryData.slice(0, 4)"
-              :key="menuItem.link"
+              :key="menuItem.id"
             >
               <router-link
                 class="menu__link"
-                :to="menuItem.link"
+                :to="menuItem.id"
               >
                 {{ menuItem.text }}
               </router-link>
@@ -115,11 +107,11 @@ const toggleMenu = () => {
         <ul>
           <li
             v-for="menuItem in categoryData"
-            :key="menuItem.link"
+            :key="menuItem.id"
           >
             <router-link
               class="menu__link"
-              :to="menuItem.link"
+              :to="menuItem.id"
             >
               {{ menuItem.text }}
             </router-link>

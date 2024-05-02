@@ -23,8 +23,8 @@ defineProps({
       <router-link
         class="section__link"
         v-for="item in items"
-        :key="item.link"
-        :to="item.link"
+        :key="item.id"
+        :to="{ name: 'catalog', query: { category: item.id }}"
       >
         <SvgTemplate
           class="section__image"

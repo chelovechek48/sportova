@@ -1,4 +1,6 @@
 <script setup>
+import { onMounted, onUnmounted } from 'vue';
+import { useStore } from 'vuex';
 import BannerTemplate from '@components/BannerTemplate.vue';
 import SliderTemplate from '@components/SliderTemplate.vue';
 import SectionTemplate from '@components/SectionTemplate.vue';
@@ -9,11 +11,27 @@ import bannerItems from '@/assets/json/banner.json';
 const categoryList = [
   ...categoryData,
   {
-    link: '',
+    id: 'Каталог',
     text: 'Открыть каталог',
     icon: 'catalog',
   },
 ];
+
+const store = useStore();
+const handleScroll = () => {
+  if (window.scrollY > 0) {
+    store.state.isScrolled = true;
+  } else {
+    store.state.isScrolled = false;
+  }
+};
+onMounted(() => {
+  window.addEventListener('scroll', handleScroll);
+});
+onUnmounted(() => {
+  window.removeEventListener('scroll', handleScroll);
+  store.state.isScrolled = true;
+});
 </script>
 
 <template>

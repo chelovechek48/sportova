@@ -7,6 +7,7 @@ import router from './router';
 const store = createStore({
   state() {
     return {
+      isScrolled: false,
       images: import.meta.glob('@images/*.*', { eager: true }),
       anchorHandler: (event) => {
         event.preventDefault();

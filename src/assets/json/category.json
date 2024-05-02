@@ -1,36 +1,36 @@
 [
   {
-    "link": "",
+    "id": "Шведские стенки",
     "text": "Шведские стенки",
     "icon": "swedish-walls"
   },
   {
-    "link": "",
+    "id": "Турники",
     "text": "Турники",
     "icon": "horizontal-bars"
   },
   {
-    "link": "",
+    "id": "Уличные комплексы",
     "text": "Уличные комплексы",
     "icon": "street-complexes"
   },
   {
-    "link": "",
+    "id": "Тяжелая атлетика",
     "text": "Тяжелая атлетика",
     "icon": "weightlifting"
   },
   {
-    "link": "",
+    "id": "Стойки под штангу",
     "text": "Стойки под штангу",
     "icon": "barbell"
   },
   {
-    "link": "",
+    "id": "Единоборства",
     "text": "Единоборства",
     "icon": "fighting"
   },
   {
-    "link": "",
+    "id": "Фитнес",
     "text": "Фитнес",
     "icon": "fitness"
   }
